@@ -1,15 +1,19 @@
 import math
+import csv
 
-board = [
-    [7,8,0,4,0,0,1,2,0],
-    [6,0,0,0,7,5,0,0,9],
-    [0,0,0,6,0,1,0,7,8],
-    [0,0,7,0,4,0,2,6,0],
-    [0,0,1,0,5,0,9,3,0],
-    [9,0,4,0,6,0,0,0,5],
-    [0,7,0,3,0,0,0,1,2],
-    [1,2,0,0,0,7,4,0,0],
-    [0,4,9,2,0,6,0,0,7]]
+def readBoard():
+    with open('board.csv', 'r') as file:
+        data = csv.reader(file, delimiter = ',')
+
+        board = []
+        for row in data:
+            tmp = []
+            for elem in row:
+                tmp.append(int(elem))
+            
+            board.append(tmp)
+    
+    return board
 
 def findBlank(board):
     for row, i in enumerate(board):
@@ -72,6 +76,8 @@ def printBoard(board):
                 print(str(board[i][j]) + ' ', end = '')
 
 def main():
+    board = readBoard()
+
     printBoard(board)
     print('\n- - - - - - - - - - - - \n')
 
